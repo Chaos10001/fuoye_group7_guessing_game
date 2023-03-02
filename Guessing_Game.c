@@ -3,61 +3,45 @@
 #include<time.h>
 
 int main(){
-    int number,num1,guess;
-    top:
+    const int MIN= 1;
+    const int MAX=100;
+    int guess;
+    int guesses;
+    int answers;
+
     srand(time(0));
-    number=rand()%100+1;
-    printf("This number is %d\n", number);
-    do{
-        printf("Guess the number between 1 to 100: ");
-        scanf("%d",&guess);
-        if (guess > 101)
-        {
-            /* code */
-            printf("This is greater than 100 \n  Re-enter number");
-        }
-        else if (guess > number)
-        {
-            /* code */
-            printf("Enter Lower number please... \n");
-        }
-        else if (guess < number){
-            /* code */
-            printf(" Enter Higher number please... \n");
-        }
-        else
-        {
-            /* code */
-            printf("You guessed it in %d Attempt \n\n", num1);
-        }
-        num1++;
-        
-    }while (guess!=number);
+
+    //generate a random number between MIN and MAX
+    answers=(rand() % MAX) + MIN;
+
+    do
     {
         /* code */
-        int a;
-        repeat:
-        printf("   If you are playing again press --->1 \n      or     \n if you want to exit press ---> 0  \n");
-        scanf("%d,%a");
-        if (a==1)
+        printf("Enter a Guess: ");
+        scanf("%d",&guess);
+        if (guess > answers)
         {
             /* code */
-            goto top;
+            printf("Too high!\n");
         }
-        if (a==0)
+        else if (guess < answers)
         {
             /* code */
-            exit;
+            printf("Too Low!\n");
         }
         else
         {
             /* code */
-            printf(" Please insert a valid number \n\n");
-            goto repeat;
+            printf("Correct!\n");
         }
-        return 0;
+        guesses++;
         
         
-    }
-    
+    } while (guess != answers);
+    printf("*************************\n");
+    printf("Answer: %d\n", answers);
+    printf("Guesses: %d\n", guesses);
+    printf("*************************");
+
+    return 0;
 }
