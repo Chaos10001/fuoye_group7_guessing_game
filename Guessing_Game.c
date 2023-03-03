@@ -1,47 +1,62 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-int main(){
-    const int MIN= 1;
-    const int MAX=100;
+int main()
+{
+    const int MIN = 1;
+    const int MAX = 100;
     int guess;
-    int guesses;
+    int guessCount = 0;
+    int guessLimit = 100;
+    int OutOfGuesses = 0;
     int answers;
 
     srand(time(0));
 
-    //generate a random number between MIN and MAX
-    answers=(rand() % MAX) + MIN;
+    // generate a random number between MIN and MAX
+    answers = (rand() % MAX) + MIN;
 
     do
     {
         /* code */
-        printf("Enter a Guess: ");
-        scanf("%d",&guess);
-        if (guess > answers)
+        if (guessCount < guessLimit)
         {
             /* code */
-            printf("Too high!\n");
-        }
-        else if (guess < answers)
-        {
-            /* code */
-            printf("Too Low!\n");
+            printf("Enter a number: ");
+            scanf("%d", &guess);
+            if (guess > answers)
+            {
+                /* code */
+                printf("Too high!\n");
+            }
+            else if (guess < answers)
+            {
+                /* code */
+                printf("Too Low!\n");
+            }
+            else
+            {
+                /* code */
+                printf("Correct!\n");
+            }
+            guessCount++;
         }
         else
         {
             /* code */
-            printf("Correct!\n");
+            OutOfGuesses = 1;
         }
-        guesses++;
-        
-        
-    } while (guess != answers);
-    printf("*************************\n");
-    printf("Answer: %d\n", answers);
-    printf("Guesses: %d\n", guesses);
-    printf("*************************");
-
+    } while (guess != answers && OutOfGuesses == 0);
+    if (OutOfGuesses == 1)
+    {
+        /* code */
+        printf("Out Of Guesses");
+    }
+    else
+    {
+        /* code */
+        printf("You Win!");
+    }
     return 0;
 }
